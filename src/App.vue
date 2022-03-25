@@ -1,32 +1,49 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        Vue longterm nicehash profitability calculator
+      </div>
+
+      <v-spacer></v-spacer>
+    </v-app-bar>
+
+    <v-main>
+      <v-dialog v-model="showWarning" max-width="600">
+        <v-card>
+          <v-card-title>
+            Warning!
+          </v-card-title>
+          <v-card-text>
+            This project was originally written as a proof of concept in late 2020. As such none of the figures are accurate with today's actual figures, so take the settings with a grain of salt. I would also like to call out that this was only built as a proof of concept (when these calculations were too hard to do in excel) and as such the code isn't the cleanest or most well documented. With that being said: Have fun poking around!
+          </v-card-text>
+          <v-card-actions>
+            <v-row dense>
+              <v-col cols="12">
+                <v-btn block color="primary" @click="showWarning = !showWarning">
+                  Dismiss
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  data: () => ({
+    showWarning: true
+  })
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
